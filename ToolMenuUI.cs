@@ -12,17 +12,17 @@ namespace PostgreSQL_Restore_DB
 {
     public partial class ToolMenuUI : UserControl, IToolUI
     {
-        public ITool ParetntTool { get; set; }
+        public ITool ParentTool { get; set; }
 
         public ToolMenuUI(ITool parentTool)
         {
             InitializeComponent();
-            ParetntTool = parentTool;
+            ParentTool = parentTool;
         }
 
         private void btMainDump_Click(object sender, EventArgs e)
         {
-            ParetntTool.ToolRuner.RunTool(new ToolDump(ParetntTool.ToolRuner));
+            ParentTool.ToolRuner.RunTool(new ToolDump(ParentTool.ToolRuner));
         }
     }
 }

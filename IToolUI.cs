@@ -8,6 +8,6 @@ namespace PostgreSQL_Restore_DB
 {
     public interface IToolUI
     {
-        ITool ParetntTool { get; }
+        ITool ParentTool { get; }
     }
 }

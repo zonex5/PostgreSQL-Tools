@@ -217,6 +217,7 @@
             this.label7.Size = new System.Drawing.Size(82, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "Dump Location:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // tbDumpLocation
             // 
@@ -225,6 +226,7 @@
             this.tbDumpLocation.ReadOnly = true;
             this.tbDumpLocation.Size = new System.Drawing.Size(501, 20);
             this.tbDumpLocation.TabIndex = 12;
+            this.tbDumpLocation.TextChanged += new System.EventHandler(this.tbDumpLocation_TextChanged);
             // 
             // label6
             // 

@@ -15,6 +15,8 @@ namespace PostgreSQL_Restore_DB
 
         public string Caption => "PostgreSQL Tools";
 
+        public bool ButtonNextEnable { get => false; }
+
         public UserControl MainContainer
         {
             get

@@ -16,6 +16,8 @@ namespace PostgreSQL_Restore_DB
 
         public string Caption { get => "Database Dump Tool"; }
 
+        public bool ButtonNextEnable { get => true; }
+
         public UserControl MainContainer
         {
             get
@@ -28,6 +30,13 @@ namespace PostgreSQL_Restore_DB
         public ToolDump(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
+
+            toolRuner.OnClickNext += ToolRuner_OnClickNext;
+        }
+
+        private void ToolRuner_OnClickNext()
+        {
+            MessageBox.Show("ok");
         }
     }
 }
