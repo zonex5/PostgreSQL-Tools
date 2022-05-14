@@ -11,7 +11,7 @@ namespace PostgreSQL_Restore_DB
     {
         private ToolMenuUI menuUI;
 
-        public IToolRuner ToolRuner { get; set; }
+        public IToolRuner ToolRuner { get; }
 
         public string Caption => "PostgreSQL Tools";
 
@@ -19,7 +19,7 @@ namespace PostgreSQL_Restore_DB
         {
             get
             {
-                if (menuUI == null) menuUI = new ToolMenuUI();
+                if (menuUI == null) menuUI = new ToolMenuUI(this);
                 return menuUI;
             }
         }

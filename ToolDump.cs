@@ -20,7 +20,7 @@ namespace PostgreSQL_Restore_DB
         {
             get
             {
-                if (toolDumpUI == null) toolDumpUI = new ToolDumpUI();
+                if (toolDumpUI == null) toolDumpUI = new ToolDumpUI(this);
                 return toolDumpUI;
             }
         }

@@ -16,10 +16,10 @@ namespace PostgreSQL_Restore_DB
         {
             InitializeComponent();
 
-            runTool(new ToolMenu(this));
+            RunTool(new ToolMenu(this));
         }
 
-        public void runTool(ITool tool)
+        public void RunTool(ITool tool)
         {
             if (tool == null) return;
 

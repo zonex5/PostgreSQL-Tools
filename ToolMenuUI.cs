@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace PostgreSQL_Restore_DB
 {
-    public partial class ToolMenuUI : UserControl
+    public partial class ToolMenuUI : UserControl, IToolUI
     {
-        public ToolMenuUI()
+        public ITool ParetntTool { get; set; }
+
+        public ToolMenuUI(ITool parentTool)
         {
             InitializeComponent();
+            ParetntTool = parentTool;
+        }
+
+        private void btMainDump_Click(object sender, EventArgs e)
+        {
+            ParetntTool.ToolRuner.RunTool(new ToolDump(ParetntTool.ToolRuner));
         }
     }
 }

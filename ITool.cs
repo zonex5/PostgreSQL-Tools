@@ -12,7 +12,7 @@ namespace PostgreSQL_Restore_DB
     {
         string Caption { get; }
 
-        IToolRuner ToolRuner { get; set; }
+        IToolRuner ToolRuner { get; }
 
         UserControl MainContainer { get; }
     }

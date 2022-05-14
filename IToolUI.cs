@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PostgreSQL_Restore_DB
 {
-    public interface IToolRuner
+    public interface IToolUI
     {
-        void RunTool(ITool tool);
+        ITool ParetntTool { get; }
     }
 }

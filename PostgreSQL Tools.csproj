@@ -58,6 +58,7 @@
     <Compile Include="DumpFormat.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="IToolRuner.cs" />
+    <Compile Include="IToolUI.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -79,6 +79,7 @@
             this.btMainDump.Text = "   Dump Database Tool";
             this.btMainDump.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btMainDump.UseVisualStyleBackColor = true;
+            this.btMainDump.Click += new System.EventHandler(this.btMainDump_Click);
             // 
             // button2
             // 
