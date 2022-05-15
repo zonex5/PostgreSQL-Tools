@@ -26,9 +26,15 @@ namespace PostgreSQL_Restore_DB
             }
         }
 
+        public DatabaseService DatabaseService { get; }
+
+        public DatabaseParams DatabaseParams { get; }
+
         public ToolMenu(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
         }
+
+        public void ButtonNextClick() { }
     }
 }

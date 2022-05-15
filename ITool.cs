@@ -17,5 +17,11 @@ namespace PostgreSQL_Restore_DB
         UserControl MainContainer { get; }
 
         bool ButtonNextEnable { get; }
+
+        DatabaseParams DatabaseParams { get; }
+
+        DatabaseService DatabaseService { get; }
+
+        void ButtonNextClick();
     }
 }

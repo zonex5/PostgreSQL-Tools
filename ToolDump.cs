@@ -27,16 +27,31 @@ namespace PostgreSQL_Restore_DB
             }
         }
 
+        public DatabaseService DatabaseService { get; } = new DatabaseService();
+
+        public DatabaseParams DatabaseParams { get; } = new DatabaseParams();
+
         public ToolDump(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
-
-            toolRuner.OnClickNext += ToolRuner_OnClickNext;
         }
 
-        private void ToolRuner_OnClickNext()
+        async public void ButtonNextClick()
         {
-            MessageBox.Show("ok");
+            if (!DatabaseParams.ValidParams)
+            {
+                MessageBox.Show("Please complete all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (await DatabaseService.doDump(DatabaseParams) != 0)
+            {
+                MessageBox.Show("Dump operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Dump operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

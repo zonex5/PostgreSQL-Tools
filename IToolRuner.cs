@@ -9,8 +9,6 @@ namespace PostgreSQL_Restore_DB
 {
     public interface IToolRuner
     {
-        event Action OnClickNext;
-
         void RunTool(ITool tool);
 
         void SetCursor(Cursor cursor);

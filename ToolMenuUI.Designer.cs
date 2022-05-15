@@ -29,41 +29,42 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolMenuUI));
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btRestore = new System.Windows.Forms.Button();
             this.btMainDump = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btTransfer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button3
+            // btDelete
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(12, 172);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 40);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "   Database Delete Tool";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btDelete.FlatAppearance.BorderSize = 0;
+            this.btDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btDelete.Image = ((System.Drawing.Image)(resources.GetObject("btDelete.Image")));
+            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btDelete.Location = new System.Drawing.Point(12, 172);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(200, 40);
+            this.btDelete.TabIndex = 8;
+            this.btDelete.Text = "   Delete Database Tool";
+            this.btDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btDelete.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btRestore
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(12, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 40);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "   Dump Database Tool";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btRestore.FlatAppearance.BorderSize = 0;
+            this.btRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRestore.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btRestore.Image = ((System.Drawing.Image)(resources.GetObject("btRestore.Image")));
+            this.btRestore.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btRestore.Location = new System.Drawing.Point(12, 66);
+            this.btRestore.Name = "btRestore";
+            this.btRestore.Size = new System.Drawing.Size(200, 40);
+            this.btRestore.TabIndex = 6;
+            this.btRestore.Text = "   Restore Database Tool";
+            this.btRestore.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btRestore.UseVisualStyleBackColor = true;
+            this.btRestore.Click += new System.EventHandler(this.btRestore_Click);
             // 
             // btMainDump
             // 
@@ -81,29 +82,29 @@
             this.btMainDump.UseVisualStyleBackColor = true;
             this.btMainDump.Click += new System.EventHandler(this.btMainDump_Click);
             // 
-            // button2
+            // btTransfer
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(12, 119);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 40);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "   Data Transfer Tool";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btTransfer.FlatAppearance.BorderSize = 0;
+            this.btTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btTransfer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btTransfer.Image = ((System.Drawing.Image)(resources.GetObject("btTransfer.Image")));
+            this.btTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btTransfer.Location = new System.Drawing.Point(12, 119);
+            this.btTransfer.Name = "btTransfer";
+            this.btTransfer.Size = new System.Drawing.Size(200, 40);
+            this.btTransfer.TabIndex = 7;
+            this.btTransfer.Text = "   Data Transfer Tool";
+            this.btTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btTransfer.UseVisualStyleBackColor = true;
             // 
             // ToolMenuUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btDelete);
+            this.Controls.Add(this.btRestore);
             this.Controls.Add(this.btMainDump);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btTransfer);
             this.Name = "ToolMenuUI";
             this.Size = new System.Drawing.Size(348, 271);
             this.ResumeLayout(false);
@@ -112,9 +113,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.Button btRestore;
         private System.Windows.Forms.Button btMainDump;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btTransfer;
     }
 }

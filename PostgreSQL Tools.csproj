@@ -89,6 +89,7 @@
     <Compile Include="ToolMenuUI.Designer.cs">
       <DependentUpon>ToolMenuUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolRestore.cs" />
     <Compile Include="ToolRestoreUI.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -9,7 +9,7 @@ namespace PostgreSQL_Restore_DB
 {
     public class ToolRestore : ITool
     {
-        private ToolDatabaseUI toolUI;
+        private ToolDumpUI toolDumpUI;
 
         public IToolRuner ToolRuner { get; set; }
 
@@ -21,21 +21,24 @@ namespace PostgreSQL_Restore_DB
         {
             get
             {
-                if (toolUI == null) toolUI = new ToolDatabaseUI(this);
-                return toolUI;
+                if (toolDumpUI == null) toolDumpUI = new ToolDumpUI(this);
+                return toolDumpUI;
             }
         }
+
+        public DatabaseService DatabaseService { get; } = new DatabaseService();
+
+        public DatabaseParams DatabaseParams { get; } = new DatabaseParams();
 
         public ToolRestore(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
-
-            toolRuner.OnClickNext += ToolRuner_OnClickNext;
         }
 
-        private void ToolRuner_OnClickNext()
+        public void ButtonNextClick()
         {
 
+            MessageBox.Show("ok restore");
         }
     }
 }

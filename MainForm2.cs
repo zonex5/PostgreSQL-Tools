@@ -12,8 +12,6 @@ namespace PostgreSQL_Restore_DB
 {
     public partial class MainForm2 : Form, IToolRuner
     {
-        public event Action OnClickNext = delegate { };
-
         private ITool previousTool = null;
         private ITool curentTool = null;
 
@@ -29,10 +27,6 @@ namespace PostgreSQL_Restore_DB
         {
             if (tool == null) return;
 
-            // unsubscribe from events 
-            if (curentTool != null)
-                curentTool.ToolRuner.OnClickNext -= OnClickNext;
-
             previousTool = curentTool;
             curentTool = tool;
 
@@ -45,7 +39,8 @@ namespace PostgreSQL_Restore_DB
 
         private void btNext_Click(object sender, EventArgs e)
         {
-            OnClickNext();
+            if (curentTool != null)
+                curentTool.ButtonNextClick();
         }
 
         private void btBack_Click(object sender, EventArgs e)
