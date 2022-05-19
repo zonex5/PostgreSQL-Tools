@@ -36,6 +36,7 @@
             this.lbCaption = new System.Windows.Forms.Label();
             this.btNext = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
+            this.btLogs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -112,12 +113,25 @@
             this.btBack.UseVisualStyleBackColor = true;
             this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
+            // btLogs
+            // 
+            this.btLogs.Image = ((System.Drawing.Image)(resources.GetObject("btLogs.Image")));
+            this.btLogs.Location = new System.Drawing.Point(12, 359);
+            this.btLogs.Name = "btLogs";
+            this.btLogs.Size = new System.Drawing.Size(82, 26);
+            this.btLogs.TabIndex = 9;
+            this.btLogs.Text = "View Logs";
+            this.btLogs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btLogs.UseVisualStyleBackColor = true;
+            this.btLogs.Click += new System.EventHandler(this.btLogs_Click);
+            // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(670, 392);
+            this.Controls.Add(this.btLogs);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.btNext);
             this.Controls.Add(this.panel2);
@@ -144,5 +158,6 @@
         private System.Windows.Forms.Panel container;
         private System.Windows.Forms.Button btNext;
         private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btLogs;
     }
 }

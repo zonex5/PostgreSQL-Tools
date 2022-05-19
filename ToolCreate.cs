@@ -7,13 +7,13 @@ using System.Windows.Forms;
 
 namespace PostgreSQL_Restore_DB
 {
-    public class ToolRestore : ITool
+    public class ToolCreate : ITool
     {
-        private ToolRestoreUI toolUI;
+        private ToolCreateUI toolUI;
 
         public IToolRuner ToolRuner { get; set; }
 
-        public string Caption { get => "Database Restore Tool"; }
+        public string Caption { get => "Create Database Tool"; }
 
         public bool ButtonNextEnable { get => true; }
 
@@ -21,7 +21,7 @@ namespace PostgreSQL_Restore_DB
         {
             get
             {
-                if (toolUI == null) toolUI = new ToolRestoreUI(this);
+                if (toolUI == null) toolUI = new ToolCreateUI(this);
                 return toolUI;
             }
         }
@@ -30,26 +30,26 @@ namespace PostgreSQL_Restore_DB
 
         public DatabaseParams DatabaseParams { get; } = new DatabaseParams();
 
-        public ToolRestore(IToolRuner toolRuner)
+        public ToolCreate(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
         }
 
         async public void ButtonNextClick()
         {
-            if (!DatabaseParams.ValidParams)
+            if (!DatabaseParams.ValidBaseParams || string.IsNullOrEmpty(DatabaseParams.Database))
             {
                 MessageBox.Show("Please complete all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (await DatabaseService.doRestore(DatabaseParams) != 0)
+            if (await DatabaseService.doCreate(DatabaseParams) != 0)
             {
-                MessageBox.Show("Restore operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Create database operation error. See application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Restore operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Create database operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

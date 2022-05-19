@@ -29,5 +29,20 @@ namespace PostgreSQL_Restore_DB
         {
             ParentTool.ToolRuner.RunTool(new ToolRestore(ParentTool.ToolRuner));
         }
+
+        private void btCreate_Click(object sender, EventArgs e)
+        {
+            ParentTool.ToolRuner.RunTool(new ToolCreate(ParentTool.ToolRuner));
+        }
+
+        private void btUser_Click(object sender, EventArgs e)
+        {
+            ParentTool.ToolRuner.RunTool(new ToolUsers(ParentTool.ToolRuner));
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            ParentTool.ToolRuner.RunTool(new ToolDatabase(ParentTool.ToolRuner));
+        }
     }
 }

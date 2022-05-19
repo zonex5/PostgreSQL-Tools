@@ -7,13 +7,13 @@ using System.Windows.Forms;
 
 namespace PostgreSQL_Restore_DB
 {
-    public class ToolRestore : ITool
+    public class ToolUsers : ITool
     {
-        private ToolRestoreUI toolUI;
+        private ToolUsersUI toolUI;
 
         public IToolRuner ToolRuner { get; set; }
 
-        public string Caption { get => "Database Restore Tool"; }
+        public string Caption { get => "User Management Tool"; }
 
         public bool ButtonNextEnable { get => true; }
 
@@ -21,7 +21,7 @@ namespace PostgreSQL_Restore_DB
         {
             get
             {
-                if (toolUI == null) toolUI = new ToolRestoreUI(this);
+                if (toolUI == null) toolUI = new ToolUsersUI(this);
                 return toolUI;
             }
         }
@@ -30,7 +30,7 @@ namespace PostgreSQL_Restore_DB
 
         public DatabaseParams DatabaseParams { get; } = new DatabaseParams();
 
-        public ToolRestore(IToolRuner toolRuner)
+        public ToolUsers(IToolRuner toolRuner)
         {
             ToolRuner = toolRuner;
         }
@@ -43,14 +43,14 @@ namespace PostgreSQL_Restore_DB
                 return;
             }
 
-            if (await DatabaseService.doRestore(DatabaseParams) != 0)
+            /*if (await DatabaseService.doRestore(DatabaseParams) != 0)
             {
                 MessageBox.Show("Restore operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MessageBox.Show("Restore operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }*/
         }
     }
 }
