@@ -35,7 +35,7 @@ namespace PostgreSQL_Restore_DB
             ToolRuner = toolRuner;
         }
 
-        async public void ButtonNextClick()
+        public void ButtonNextClick()
         {
             if (!DatabaseParams.ValidParams)
             {
@@ -43,14 +43,21 @@ namespace PostgreSQL_Restore_DB
                 return;
             }
 
-            if (await DatabaseService.doRestore(DatabaseParams) != 0)
+            Action<IBusyBox> action = async (IBusyBox busyBox) =>
             {
-                MessageBox.Show("Restore operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Restore operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (await DatabaseService.doRestore(DatabaseParams) != 0)
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Restore operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Restore operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            };
+
+            new LoadingForm(action).ShowDialog();
         }
     }
 }

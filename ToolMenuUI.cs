@@ -44,5 +44,15 @@ namespace PostgreSQL_Restore_DB
         {
             ParentTool.ToolRuner.RunTool(new ToolDatabase(ParentTool.ToolRuner));
         }
+
+        private void btTransfer_Click(object sender, EventArgs e)
+        {
+            Action<IBusyBox> action = (IBusyBox busyBox) =>
+            {
+                //busyBox.Close();
+            };
+
+            new LoadingForm(action).ShowDialog();
+        }
     }
 }

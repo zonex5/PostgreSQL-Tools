@@ -36,7 +36,7 @@ namespace PostgreSQL_Restore_DB
             ToolRuner = toolRuner;
         }
 
-        async public void ButtonNextClick()
+        public void ButtonNextClick()
         {
             if (!DatabaseParams.ValidParams)
             {
@@ -44,14 +44,21 @@ namespace PostgreSQL_Restore_DB
                 return;
             }
 
-            if (await DatabaseService.doDump(DatabaseParams) != 0)
+            Action<IBusyBox> action = async (IBusyBox busyBox) =>
             {
-                MessageBox.Show("Dump operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Dump operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (await DatabaseService.doDump(DatabaseParams) != 0)
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Dump operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Dump operation have been completed. Suka", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            };
+
+            new LoadingForm(action).ShowDialog();
         }
     }
 }

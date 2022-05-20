@@ -58,9 +58,16 @@
     <Compile Include="DatabaseParams.cs" />
     <Compile Include="DatabaseService.cs" />
     <Compile Include="DumpFormat.cs" />
+    <Compile Include="IBusyBox.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="IToolRuner.cs" />
     <Compile Include="IToolUI.cs" />
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +130,9 @@
     <Compile Include="ToolUsersUI.Designer.cs">
       <DependentUpon>ToolUsersUI.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

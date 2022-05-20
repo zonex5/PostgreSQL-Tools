@@ -98,9 +98,11 @@
             this.btTransfer.Text = "   Data Transfer Tool";
             this.btTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btTransfer.UseVisualStyleBackColor = true;
+            this.btTransfer.Click += new System.EventHandler(this.btTransfer_Click);
             // 
             // btUser
             // 
+            this.btUser.Enabled = false;
             this.btUser.FlatAppearance.BorderSize = 0;
             this.btUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
