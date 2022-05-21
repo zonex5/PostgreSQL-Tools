@@ -34,10 +34,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.container = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lbCaption = new System.Windows.Forms.Label();
-            this.btNext = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
             this.btLogs = new System.Windows.Forms.Button();
+            this.lbCaption = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -74,7 +73,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.btNext);
             this.panel2.Controls.Add(this.btBack);
             this.panel2.Controls.Add(this.btLogs);
             this.panel2.Controls.Add(this.lbCaption);
@@ -82,29 +80,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(670, 40);
             this.panel2.TabIndex = 6;
-            // 
-            // lbCaption
-            // 
-            this.lbCaption.AutoSize = true;
-            this.lbCaption.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbCaption.Location = new System.Drawing.Point(43, 8);
-            this.lbCaption.Name = "lbCaption";
-            this.lbCaption.Size = new System.Drawing.Size(137, 21);
-            this.lbCaption.TabIndex = 0;
-            this.lbCaption.Text = "PostgreSQL Tools";
-            // 
-            // btNext
-            // 
-            this.btNext.Enabled = false;
-            this.btNext.Image = ((System.Drawing.Image)(resources.GetObject("btNext.Image")));
-            this.btNext.Location = new System.Drawing.Point(424, 7);
-            this.btNext.Name = "btNext";
-            this.btNext.Size = new System.Drawing.Size(82, 26);
-            this.btNext.TabIndex = 7;
-            this.btNext.Text = "Next ";
-            this.btNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btNext.UseVisualStyleBackColor = true;
-            this.btNext.Click += new System.EventHandler(this.btNext_Click);
             // 
             // btBack
             // 
@@ -114,7 +89,7 @@
             this.btBack.Image = ((System.Drawing.Image)(resources.GetObject("btBack.Image")));
             this.btBack.Location = new System.Drawing.Point(3, 2);
             this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(39, 35);
+            this.btBack.Size = new System.Drawing.Size(41, 35);
             this.btBack.TabIndex = 8;
             this.btBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btBack.UseVisualStyleBackColor = true;
@@ -133,6 +108,16 @@
             this.toolTip1.SetToolTip(this.btLogs, "View Logs");
             this.btLogs.UseVisualStyleBackColor = true;
             this.btLogs.Click += new System.EventHandler(this.btLogs_Click);
+            // 
+            // lbCaption
+            // 
+            this.lbCaption.AutoSize = true;
+            this.lbCaption.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbCaption.Location = new System.Drawing.Point(43, 8);
+            this.lbCaption.Name = "lbCaption";
+            this.lbCaption.Size = new System.Drawing.Size(137, 21);
+            this.lbCaption.TabIndex = 0;
+            this.lbCaption.Text = "PostgreSQL Tools";
             // 
             // MainForm3
             // 
@@ -162,7 +147,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbCaption;
         private System.Windows.Forms.Panel container;
-        private System.Windows.Forms.Button btNext;
         private System.Windows.Forms.Button btBack;
         private System.Windows.Forms.Button btLogs;
         private System.Windows.Forms.ToolTip toolTip1;

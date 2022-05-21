@@ -1,6 +1,6 @@
 ﻿namespace PGTools
 {
-    partial class ToolRestoreUI
+    partial class ToolRestore
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolRestoreUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolRestore));
             this.btDumpLocation = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tbPath = new System.Windows.Forms.TextBox();
@@ -44,6 +44,7 @@
             this.cbHost = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbDatabase = new System.Windows.Forms.ComboBox();
+            this.btNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btDumpLocation
@@ -181,10 +182,23 @@
             this.cbDatabase.DropDown += new System.EventHandler(this.cbDatabase_DropDown);
             this.cbDatabase.DropDownClosed += new System.EventHandler(this.cbDatabase_DropDownClosed);
             // 
-            // ToolRestoreUI
+            // btNext
+            // 
+            this.btNext.Image = ((System.Drawing.Image)(resources.GetObject("btNext.Image")));
+            this.btNext.Location = new System.Drawing.Point(419, 284);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(82, 26);
+            this.btNext.TabIndex = 46;
+            this.btNext.Text = "Run";
+            this.btNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // ToolRestore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btNext);
             this.Controls.Add(this.cbDatabase);
             this.Controls.Add(this.btDumpLocation);
             this.Controls.Add(this.label7);
@@ -200,8 +214,8 @@
             this.Controls.Add(this.tbPort);
             this.Controls.Add(this.cbHost);
             this.Controls.Add(this.label1);
-            this.Name = "ToolRestoreUI";
-            this.Size = new System.Drawing.Size(535, 260);
+            this.Name = "ToolRestore";
+            this.Size = new System.Drawing.Size(535, 330);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +238,6 @@
         private System.Windows.Forms.ComboBox cbHost;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbDatabase;
+        private System.Windows.Forms.Button btNext;
     }
 }

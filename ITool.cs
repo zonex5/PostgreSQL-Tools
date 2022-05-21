@@ -12,16 +12,12 @@ namespace PGTools
     {
         string Caption { get; }
 
-        IToolRuner ToolRuner { get; }
-
         UserControl MainContainer { get; }
 
-        bool ButtonNextEnable { get; }
+        IToolRuner ToolRuner { get; }
 
         DatabaseParams DatabaseParams { get; }
 
         DatabaseService DatabaseService { get; }
-
-        void ButtonNextClick();
     }
 }

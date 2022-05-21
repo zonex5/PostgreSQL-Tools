@@ -1,6 +1,6 @@
 ﻿namespace PGTools
 {
-    partial class ToolDumpUI
+    partial class ToolDump
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolDumpUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolDump));
             this.label6 = new System.Windows.Forms.Label();
             this.tbPort = new System.Windows.Forms.TextBox();
             this.cbHost = new System.Windows.Forms.ComboBox();
@@ -184,9 +184,8 @@
             // 
             // btNext
             // 
-            this.btNext.Enabled = false;
             this.btNext.Image = ((System.Drawing.Image)(resources.GetObject("btNext.Image")));
-            this.btNext.Location = new System.Drawing.Point(419, 256);
+            this.btNext.Location = new System.Drawing.Point(419, 284);
             this.btNext.Name = "btNext";
             this.btNext.Size = new System.Drawing.Size(82, 26);
             this.btNext.TabIndex = 29;
@@ -195,7 +194,7 @@
             this.btNext.UseVisualStyleBackColor = true;
             this.btNext.Click += new System.EventHandler(this.btNext_Click);
             // 
-            // ToolDumpUI
+            // ToolDump
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -215,8 +214,8 @@
             this.Controls.Add(this.tbPort);
             this.Controls.Add(this.cbHost);
             this.Controls.Add(this.label1);
-            this.Name = "ToolDumpUI";
-            this.Size = new System.Drawing.Size(526, 308);
+            this.Name = "ToolDump";
+            this.Size = new System.Drawing.Size(535, 330);
             this.ResumeLayout(false);
             this.PerformLayout();
 

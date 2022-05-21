@@ -35,14 +35,7 @@ namespace PGTools
             lbCaption.Text = tool.Caption;
             container.Controls.Clear();
             container.Controls.Add(tool.MainContainer);
-            btNext.Enabled = tool.ButtonNextEnable;
             btBack.Enabled = true;
-        }
-
-        private void btNext_Click(object sender, EventArgs e)
-        {
-            if (curentTool != null)
-                curentTool.ButtonNextClick();
         }
 
         private void btBack_Click(object sender, EventArgs e)

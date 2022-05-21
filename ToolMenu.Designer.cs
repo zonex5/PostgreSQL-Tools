@@ -1,6 +1,6 @@
 ﻿namespace PGTools
 {
-    partial class ToolMenuUI
+    partial class ToolMenu
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolMenuUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolMenu));
             this.btDelete = new System.Windows.Forms.Button();
             this.btRestore = new System.Windows.Forms.Button();
             this.btMainDump = new System.Windows.Forms.Button();
@@ -117,7 +117,7 @@
             this.btUser.UseVisualStyleBackColor = true;
             this.btUser.Click += new System.EventHandler(this.btUser_Click);
             // 
-            // ToolMenuUI
+            // ToolMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,8 +126,8 @@
             this.Controls.Add(this.btRestore);
             this.Controls.Add(this.btMainDump);
             this.Controls.Add(this.btTransfer);
-            this.Name = "ToolMenuUI";
-            this.Size = new System.Drawing.Size(667, 305);
+            this.Name = "ToolMenu";
+            this.Size = new System.Drawing.Size(535, 330);
             this.ResumeLayout(false);
 
         }

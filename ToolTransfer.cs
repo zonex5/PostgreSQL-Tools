@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PGTools
 {
-    public partial class ToolUsersUI : UserControl, IToolUI
+    public partial class ToolTransfer : UserControl
     {
-        public ToolUsersUI(ITool parentTool)
+        public ToolTransfer()
         {
             InitializeComponent();
-            ParentTool = parentTool;
         }
-
-        public ITool ParentTool { get; set; }
-
-
     }
 }

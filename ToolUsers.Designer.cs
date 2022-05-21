@@ -1,6 +1,6 @@
 ﻿namespace PGTools
 {
-    partial class ToolUsersUI
+    partial class ToolUsers
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -68,7 +68,7 @@
             this.tbUser.TabIndex = 26;
             this.tbUser.Text = "postgres";
             // 
-            // ToolUsersUI
+            // ToolUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -76,8 +76,8 @@
             this.Controls.Add(this.tbPass);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbUser);
-            this.Name = "ToolUsersUI";
-            this.Size = new System.Drawing.Size(537, 343);
+            this.Name = "ToolUsers";
+            this.Size = new System.Drawing.Size(535, 330);
             this.ResumeLayout(false);
             this.PerformLayout();
 
