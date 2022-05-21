@@ -69,40 +69,58 @@ namespace PostgreSQL_Restore_DB
             }
         }
 
-        async private void btRemove_Click(object sender, EventArgs e)
+        private void btRemove_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Do you want to delete selected database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 var item = (KeyValuePair<string, string>)grid.SelectedRows[0].DataBoundItem;
                 ParentTool.DatabaseParams.Database = item.Value;
 
-                if (await ParentTool.DatabaseService.doDelete(ParentTool.DatabaseParams) != 0)
+                Action<IBusyBox> action = async (IBusyBox busyBox) =>
                 {
-                    MessageBox.Show("Database delete operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    loadData();
-                    MessageBox.Show("Database delete operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    if (await ParentTool.DatabaseService.doDelete(ParentTool.DatabaseParams) != 0)
+                    {
+                        busyBox.Close();
+                        MessageBox.Show("Database delete operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        loadData();
+                        busyBox.Close();
+                        MessageBox.Show("Database delete operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                };
+                new LoadingForm(action).ShowDialog();
             }
         }
 
-        async private void btAdd_Click(object sender, EventArgs e)
+        private void btAdd_Click(object sender, EventArgs e)
         {
+            if (!ParentTool.DatabaseParams.ValidBaseParams)
+            {
+                MessageBox.Show("Please complete all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var form = new NewDatabaseForm();
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                ParentTool.DatabaseParams.Database = form.DatabaseName;
-                if (await ParentTool.DatabaseService.doCreate(ParentTool.DatabaseParams) != 0)
+                Action<IBusyBox> action = async (IBusyBox busyBox) =>
                 {
-                    MessageBox.Show("Database create operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    loadData();
-                    MessageBox.Show("Database create operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    ParentTool.DatabaseParams.Database = form.DatabaseName;
+                    if (await ParentTool.DatabaseService.doCreate(ParentTool.DatabaseParams) != 0)
+                    {
+                        busyBox.Close();
+                        MessageBox.Show("Database create operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        loadData();
+                        busyBox.Close();
+                        MessageBox.Show("Database create operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                };
+                new LoadingForm(action).ShowDialog();
             }
         }
 
