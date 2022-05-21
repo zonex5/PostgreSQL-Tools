@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace PGTools
 {
-    public partial class MainForm2 : Form, IToolRuner
+    public partial class MainForm3 : Form, IToolRuner
     {
         private ITool previousTool = null;
         private ITool curentTool = null;
 
-        public MainForm2()
+        public MainForm3()
         {
             InitializeComponent();
 

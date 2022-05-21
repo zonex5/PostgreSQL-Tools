@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public class DatabaseService
     {

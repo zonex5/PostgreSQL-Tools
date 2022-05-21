@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public partial class ToolDatabaseUI : UserControl, IToolUI
     {
@@ -76,7 +76,7 @@ namespace PostgreSQL_Restore_DB
                 var item = (KeyValuePair<string, string>)grid.SelectedRows[0].DataBoundItem;
                 ParentTool.DatabaseParams.Database = item.Value;
 
-                Action<IBusyBox> action = async (IBusyBox busyBox) =>
+                Action<IBusyBox> action = async (busyBox) =>
                 {
                     if (await ParentTool.DatabaseService.doDelete(ParentTool.DatabaseParams) != 0)
                     {
@@ -105,7 +105,7 @@ namespace PostgreSQL_Restore_DB
             var form = new NewDatabaseForm();
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                Action<IBusyBox> action = async (IBusyBox busyBox) =>
+                Action<IBusyBox> action = async (busyBox) =>
                 {
                     ParentTool.DatabaseParams.Database = form.DatabaseName;
                     if (await ParentTool.DatabaseService.doCreate(ParentTool.DatabaseParams) != 0)

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2800422-2026-4F0D-A9EC-0E74A6CC0695}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PostgreSQL_Restore_DB</RootNamespace>
-    <AssemblyName>PostgreSQL Restore DB</AssemblyName>
+    <RootNamespace>PGTools</RootNamespace>
+    <AssemblyName>PGTools</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -74,6 +74,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm3.Designer.cs">
+      <DependentUpon>MainForm3.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,13 +94,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolCreate.cs" />
-    <Compile Include="ToolCreateUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ToolCreateUI.Designer.cs">
-      <DependentUpon>ToolCreateUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolDatabase.cs" />
     <Compile Include="ToolDatabaseUI.cs">
       <SubType>UserControl</SubType>
@@ -136,6 +135,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm3.resx">
+      <DependentUpon>MainForm3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm2.resx">
       <DependentUpon>MainForm2.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,10 +152,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolCreateUI.resx">
-      <DependentUpon>ToolCreateUI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolDatabaseUI.resx">
       <DependentUpon>ToolDatabaseUI.cs</DependentUpon>
     </EmbeddedResource>

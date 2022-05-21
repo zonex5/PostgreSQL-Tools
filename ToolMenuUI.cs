@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public partial class ToolMenuUI : UserControl, IToolUI
     {
@@ -28,11 +28,6 @@ namespace PostgreSQL_Restore_DB
         private void btRestore_Click(object sender, EventArgs e)
         {
             ParentTool.ToolRuner.RunTool(new ToolRestore(ParentTool.ToolRuner));
-        }
-
-        private void btCreate_Click(object sender, EventArgs e)
-        {
-            ParentTool.ToolRuner.RunTool(new ToolCreate(ParentTool.ToolRuner));
         }
 
         private void btUser_Click(object sender, EventArgs e)

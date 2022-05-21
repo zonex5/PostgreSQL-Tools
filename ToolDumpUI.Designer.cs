@@ -1,4 +1,4 @@
-﻿namespace PostgreSQL_Restore_DB
+﻿namespace PGTools
 {
     partial class ToolDumpUI
     {
@@ -44,6 +44,7 @@
             this.btDumpLocation = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tbPath = new System.Windows.Forms.TextBox();
+            this.btNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label6
@@ -181,10 +182,24 @@
             this.tbPath.Size = new System.Drawing.Size(409, 20);
             this.tbPath.TabIndex = 26;
             // 
+            // btNext
+            // 
+            this.btNext.Enabled = false;
+            this.btNext.Image = ((System.Drawing.Image)(resources.GetObject("btNext.Image")));
+            this.btNext.Location = new System.Drawing.Point(419, 256);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(82, 26);
+            this.btNext.TabIndex = 29;
+            this.btNext.Text = "Run";
+            this.btNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
             // ToolDumpUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btNext);
             this.Controls.Add(this.btDumpLocation);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbPath);
@@ -201,7 +216,7 @@
             this.Controls.Add(this.cbHost);
             this.Controls.Add(this.label1);
             this.Name = "ToolDumpUI";
-            this.Size = new System.Drawing.Size(526, 260);
+            this.Size = new System.Drawing.Size(526, 308);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +239,6 @@
         private System.Windows.Forms.Button btDumpLocation;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbPath;
+        private System.Windows.Forms.Button btNext;
     }
 }

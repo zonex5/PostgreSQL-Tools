@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public partial class LoadingForm : Form, IBusyBox
     {

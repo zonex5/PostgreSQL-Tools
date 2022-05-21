@@ -1,4 +1,4 @@
-﻿namespace PostgreSQL_Restore_DB
+﻿namespace PGTools
 {
     partial class ToolRestoreUI
     {

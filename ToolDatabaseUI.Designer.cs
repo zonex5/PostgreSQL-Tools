@@ -1,4 +1,4 @@
-﻿namespace PostgreSQL_Restore_DB
+﻿namespace PGTools
 {
     partial class ToolDatabaseUI
     {
@@ -144,7 +144,7 @@
             this.grid.Name = "grid";
             this.grid.RowHeadersVisible = false;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(483, 176);
+            this.grid.Size = new System.Drawing.Size(483, 198);
             this.grid.TabIndex = 38;
             this.grid.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.grid_RowPostPaint);
             this.grid.SelectionChanged += new System.EventHandler(this.grid_SelectionChanged);
@@ -237,7 +237,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbUser);
             this.Name = "ToolDatabaseUI";
-            this.Size = new System.Drawing.Size(591, 373);
+            this.Size = new System.Drawing.Size(531, 342);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

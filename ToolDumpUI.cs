@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public partial class ToolDumpUI : UserControl, IToolUI
     {
@@ -60,6 +60,31 @@ namespace PostgreSQL_Restore_DB
             {
                 tbPath.Text = dialog.SelectedPath;
             }
+        }
+
+        private void btNext_Click(object sender, EventArgs e)
+        {
+            if (!DatabaseParams.ValidParams)
+            {
+                MessageBox.Show("Please complete all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Action<IBusyBox> action = async (IBusyBox busyBox) =>
+            {
+                if (await DatabaseService.doDump(DatabaseParams) != 0)
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Dump operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    busyBox.Close();
+                    MessageBox.Show("Dump operation have been completed. Suka", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            };
+
+            new LoadingForm(action).ShowDialog();
         }
     }
 }
