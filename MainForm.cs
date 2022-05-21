@@ -372,5 +372,15 @@ namespace PostgreSQL_Restore_DB
                 rbConsole.AppendText(Encoding.UTF8.GetString(Encoding.Default.GetBytes(text)) + Environment.NewLine);
             }));
         }
+
+        private void tbDumpLocation_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

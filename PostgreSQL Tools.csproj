@@ -55,17 +55,92 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseParams.cs" />
+    <Compile Include="DatabaseService.cs" />
     <Compile Include="DumpFormat.cs" />
+    <Compile Include="IBusyBox.cs" />
+    <Compile Include="ITool.cs" />
+    <Compile Include="IToolRuner.cs" />
+    <Compile Include="IToolUI.cs" />
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm2.Designer.cs">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDatabaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDatabaseForm.Designer.cs">
+      <DependentUpon>NewDatabaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolCreate.cs" />
+    <Compile Include="ToolCreateUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolCreateUI.Designer.cs">
+      <DependentUpon>ToolCreateUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolDatabase.cs" />
+    <Compile Include="ToolDatabaseUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolDatabaseUI.Designer.cs">
+      <DependentUpon>ToolDatabaseUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolDump.cs" />
+    <Compile Include="ToolDumpUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolDumpUI.Designer.cs">
+      <DependentUpon>ToolDumpUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolMenu.cs" />
+    <Compile Include="ToolMenuUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolMenuUI.Designer.cs">
+      <DependentUpon>ToolMenuUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolRestore.cs" />
+    <Compile Include="ToolRestoreUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolRestoreUI.Designer.cs">
+      <DependentUpon>ToolRestoreUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolUsers.cs" />
+    <Compile Include="ToolUsersUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolUsersUI.Designer.cs">
+      <DependentUpon>ToolUsersUI.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm2.resx">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDatabaseForm.resx">
+      <DependentUpon>NewDatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +151,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ToolCreateUI.resx">
+      <DependentUpon>ToolCreateUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolDatabaseUI.resx">
+      <DependentUpon>ToolDatabaseUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolDumpUI.resx">
+      <DependentUpon>ToolDumpUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolMenuUI.resx">
+      <DependentUpon>ToolMenuUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolRestoreUI.resx">
+      <DependentUpon>ToolRestoreUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolUsersUI.resx">
+      <DependentUpon>ToolUsersUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="distribute.zip" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
