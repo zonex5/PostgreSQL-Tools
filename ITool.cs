@@ -15,9 +15,5 @@ namespace PGTools
         UserControl MainContainer { get; }
 
         IToolRuner ToolRuner { get; }
-
-        DatabaseParams DatabaseParams { get; }
-
-        DatabaseService DatabaseService { get; }
     }
 }

@@ -63,7 +63,7 @@
             this.btRestore.Name = "btRestore";
             this.btRestore.Size = new System.Drawing.Size(200, 40);
             this.btRestore.TabIndex = 6;
-            this.btRestore.Text = "   Restore Database Tool";
+            this.btRestore.Text = "   Database Restore Tool";
             this.btRestore.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btRestore.UseVisualStyleBackColor = true;
             this.btRestore.Click += new System.EventHandler(this.btRestore_Click);
@@ -79,7 +79,7 @@
             this.btMainDump.Name = "btMainDump";
             this.btMainDump.Size = new System.Drawing.Size(200, 40);
             this.btMainDump.TabIndex = 5;
-            this.btMainDump.Text = "   Dump Database Tool";
+            this.btMainDump.Text = "   Database Dump Tool";
             this.btMainDump.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btMainDump.UseVisualStyleBackColor = true;
             this.btMainDump.Click += new System.EventHandler(this.btMainDump_Click);
@@ -95,7 +95,7 @@
             this.btTransfer.Name = "btTransfer";
             this.btTransfer.Size = new System.Drawing.Size(200, 40);
             this.btTransfer.TabIndex = 7;
-            this.btTransfer.Text = "   Data Transfer Tool";
+            this.btTransfer.Text = "   Database Transfer Tool";
             this.btTransfer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btTransfer.UseVisualStyleBackColor = true;
             this.btTransfer.Click += new System.EventHandler(this.btTransfer_Click);

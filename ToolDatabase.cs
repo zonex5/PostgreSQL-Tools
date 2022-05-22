@@ -40,10 +40,10 @@ namespace PGTools
             DatabaseParams.Password = "postgres";
         }
 
-        async private void loadData()
+        private async void LoadData()
         {
             grid.AutoGenerateColumns = false;
-            var list = await DatabaseService.getDatabaseList(DatabaseParams);
+            var list = await DatabaseService.GetDatabaseList(DatabaseParams);
             if (list != null)
             {
                 grid.DataSource = list.Select(x => new KeyValuePair<string, string>("", x)).ToList();
@@ -56,7 +56,7 @@ namespace PGTools
 
         private void btLoad_Click(object sender, EventArgs e)
         {
-            loadData();
+            LoadData();
         }
 
         private void grid_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -81,20 +81,20 @@ namespace PGTools
                 var item = (KeyValuePair<string, string>)grid.SelectedRows[0].DataBoundItem;
                 DatabaseParams.Database = item.Value;
 
-                Action<IBusyBox> action = async (busyBox) =>
+                async void action(IBusyBox busyBox)
                 {
-                    if (await DatabaseService.doDelete(DatabaseParams) != 0)
+                    if (await DatabaseService.DoDelete(DatabaseParams) != 0)
                     {
                         busyBox.Close();
                         MessageBox.Show("Database delete operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        loadData();
+                        LoadData();
                         busyBox.Close();
                         MessageBox.Show("Database delete operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                };
+                }
                 new LoadingForm(action).ShowDialog();
             }
         }
@@ -110,21 +110,21 @@ namespace PGTools
             var form = new NewDatabaseForm();
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                Action<IBusyBox> action = async (busyBox) =>
+                async void action(IBusyBox busyBox)
                 {
                     DatabaseParams.Database = form.DatabaseName;
-                    if (await DatabaseService.doCreate(DatabaseParams) != 0)
+                    if (await DatabaseService.DoCreate(DatabaseParams) != 0)
                     {
                         busyBox.Close();
                         MessageBox.Show("Database create operation error. Please see application logs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        loadData();
+                        LoadData();
                         busyBox.Close();
                         MessageBox.Show("Database create operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                };
+                }
                 new LoadingForm(action).ShowDialog();
             }
         }

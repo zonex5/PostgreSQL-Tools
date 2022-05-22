@@ -50,12 +50,7 @@ namespace PGTools
 
         private void btTransfer_Click(object sender, EventArgs e)
         {
-            //Action<IBusyBox> action = (IBusyBox busyBox) =>
-            //{
-            //    //busyBox.Close();
-            //};
-
-            //new LoadingForm(action).ShowDialog();
+            ToolRuner.RunTool(new ToolTransfer(ToolRuner));
         }
     }
 }

@@ -51,7 +51,7 @@ namespace PGTools
             if (DatabaseParams.ValidBaseParams)
             {
                 ToolRuner.SetCursor(Cursors.WaitCursor);
-                cbDatabase.DataSource = await DatabaseService.getDatabaseList(DatabaseParams);
+                cbDatabase.DataSource = await DatabaseService.GetDatabaseList(DatabaseParams);
                 ToolRuner.SetCursor(Cursors.Default);
             }
         }
@@ -78,9 +78,9 @@ namespace PGTools
                 return;
             }
 
-            Action<IBusyBox> action = async (IBusyBox busyBox) =>
+            async void action(IBusyBox busyBox)
             {
-                if (await DatabaseService.doDump(DatabaseParams) != 0)
+                if (await DatabaseService.DoDump(DatabaseParams) != 0)
                 {
                     busyBox.Close();
                     MessageBox.Show("Dump operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -88,9 +88,9 @@ namespace PGTools
                 else
                 {
                     busyBox.Close();
-                    MessageBox.Show("Dump operation have been completed. Suka", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Dump operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            };
+            }
 
             new LoadingForm(action).ShowDialog();
         }

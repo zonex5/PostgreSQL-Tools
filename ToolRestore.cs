@@ -64,7 +64,7 @@ namespace PGTools
             else
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = getFilter(cbFormat.SelectedIndex);
+                dialog.Filter = GetFilter(cbFormat.SelectedIndex);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     tbPath.Text = dialog.FileName;
@@ -72,7 +72,7 @@ namespace PGTools
             }
         }
 
-        private string getFilter(int selectedIndex)
+        private string GetFilter(int selectedIndex)
         {
             switch (selectedIndex)
             {
@@ -83,12 +83,12 @@ namespace PGTools
             }
         }
 
-        async private void cbDatabase_DropDown(object sender, EventArgs e)
+        private async void cbDatabase_DropDown(object sender, EventArgs e)
         {
             if (DatabaseParams.ValidBaseParams)
             {
                 ToolRuner.SetCursor(Cursors.WaitCursor);
-                cbDatabase.DataSource = await DatabaseService.getDatabaseList(DatabaseParams);
+                cbDatabase.DataSource = await DatabaseService.GetDatabaseList(DatabaseParams);
                 ToolRuner.SetCursor(Cursors.Default);
             }
         }
@@ -106,9 +106,9 @@ namespace PGTools
                 return;
             }
 
-            Action<IBusyBox> action = async (IBusyBox busyBox) =>
+            async void action(IBusyBox busyBox)
             {
-                if (await DatabaseService.doRestore(DatabaseParams) != 0)
+                if (await DatabaseService.DoRestore(DatabaseParams) != 0)
                 {
                     busyBox.Close();
                     MessageBox.Show("Restore operation error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -118,7 +118,7 @@ namespace PGTools
                     busyBox.Close();
                     MessageBox.Show("Restore operation have been completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            };
+            }
 
             new LoadingForm(action).ShowDialog();
         }
