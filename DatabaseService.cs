@@ -55,7 +55,7 @@ namespace PGTools
 
         public async Task<int> DoDump(DatabaseParams prms)
         {
-            return await DoCommand(@".\psql\pg_dump.exe", $"-h {prms.Host} -p {prms.Port} {prms.Jobs} {prms.Compressoin} -O -U {prms.User} -f \"{prms.Path}{prms.DumpFileName}\" --blobs --format={prms.Format} {prms.Database}", prms.Password, null, LogError);
+            return await DoCommand(@".\psql\pg_dump.exe", $"-h {prms.Host} -p {prms.Port} {prms.Jobs} {prms.Compressoin} -O -U {prms.User} -f \"{prms.Path}\\{prms.DumpFileName}\" --blobs --format={prms.Format} {prms.Database}", prms.Password, null, LogError);
         }
 
         public async Task<int> DoTransfer(DatabaseParams prmsSrc, DatabaseParams prmsDest)
