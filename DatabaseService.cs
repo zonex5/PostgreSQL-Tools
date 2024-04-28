@@ -50,12 +50,12 @@ namespace PGTools
         public async Task<int> DoRestore(DatabaseParams prms)
         {
             return await DoDelete(prms) == 0 && await DoCreate(prms) == 0
-                && await DoCommand(@".\psql\pg_restore.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -d {prms.Database} \"{prms.Path}\"", prms.Password, null, LogError) == 0 ? 0 : 1;
+                && await DoCommand(@".\psql\pg_restore.exe", $"--no-owner -h {prms.Host} -p {prms.Port} -U {prms.User} -d {prms.Database} \"{prms.Path}\"", prms.Password, null, LogError) == 0 ? 0 : 1;
         }
 
         public async Task<int> DoDump(DatabaseParams prms)
         {
-            return await DoCommand(@".\psql\pg_dump.exe", $"-h {prms.Host} -p {prms.Port} {prms.Jobs} {prms.Compressoin} -O -U {prms.User} -f \"{prms.Path}\\{prms.DumpFileName}\" --blobs --format={prms.Format} {prms.Database}", prms.Password, null, LogError);
+            return await DoCommand(@".\psql\pg_dump.exe", $"--no-owner --no-privileges -h {prms.Host} -p {prms.Port} {prms.Jobs} {prms.Compressoin} -O -U {prms.User} -f \"{prms.Path}\\{prms.DumpFileName}\" --blobs --format={prms.Format} {prms.Database}", prms.Password, null, LogError);
         }
 
         public async Task<int> DoTransfer(DatabaseParams prmsSrc, DatabaseParams prmsDest)
@@ -100,11 +100,13 @@ namespace PGTools
 
         public List<DumpFormat> GetFormats()
         {
-            var items = new List<DumpFormat>();
-            items.Add(new DumpFormat('c', "Custom"));
-            items.Add(new DumpFormat('d', "Directory"));
-            items.Add(new DumpFormat('p', "Plain"));
-            items.Add(new DumpFormat('t', "Tar atchive"));
+            var items = new List<DumpFormat>
+            {
+                new DumpFormat('c', "Custom"),
+                new DumpFormat('d', "Directory"),
+                new DumpFormat('p', "Plain"),
+                new DumpFormat('t', "Tar atchive")
+            };
             return items;
         }
 
