@@ -6,21 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public class DatabaseService
     {
-        private static string HostFile = "hosts.ini";
+        private const string HostFile = "hosts.ini";
 
-        async public Task<List<string>> getUserList(DatabaseParams prms)
+        private readonly Action<string> LogError = (error) => File.AppendAllText("logs.log", DateTime.Now.ToString() + ": " + error + Environment.NewLine, Encoding.Default);
+
+        public async Task<List<string>> GetUserList(DatabaseParams prms)
         {
-            List<string> list = await executeQuerySelect(prms.Host, prms.Port, prms.User, prms.Password, $"SELECT usename AS role_name FROM pg_catalog.pg_user ORDER BY role_name desc;");
+            List<string> list = await ExecuteQuerySelect(prms.Host, prms.Port, prms.User, prms.Password, $"SELECT usename AS role_name FROM pg_catalog.pg_user ORDER BY role_name desc;");
             return list.Count > 0 ? list.GetRange(2, list.Count - 3).Select(db => db.Trim()).ToList() : list;
         }
 
-        async public Task<List<string>> getDatabaseList(string host, string port, string user, string password)
+        public async Task<List<string>> GetDatabaseList(DatabaseParams prms)
         {
-            List<string> list = await executeQuerySelect(host, port, user, password, $"SELECT datname FROM pg_database");
+            List<string> list = await ExecuteQuerySelect(prms.Host, prms.Port, prms.User, prms.Password, $"SELECT datname FROM pg_database");
             if (list == null)
                 return null;
             else
@@ -32,68 +34,58 @@ namespace PostgreSQL_Restore_DB
                                                   ).Select(db => db.Trim()).ToList() : list;
         }
 
-        async public Task<List<string>> getDatabaseList(DatabaseParams prms)
-        {
-            return await getDatabaseList(prms.Host, prms.Port, prms.User, prms.Password);
-        }
-
-        async public Task<int> executeQuery(string host, string port, string user, string password, string query, string db = null)
+        public async Task<int> ExecuteQuery(string host, string port, string user, string password, string query, string db = null)
         {
             var dbPart = db != null ? $"-d {db}" : "";
-            return await doCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} {dbPart} -c \"{query};\"", password);
+            return await DoCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} {dbPart} -c \"{query};\"", password);
         }
 
-        async public Task<List<string>> executeQuerySelect(string host, string port, string user, string password, string query)
+        public async Task<List<string>> ExecuteQuerySelect(string host, string port, string user, string password, string query)
         {
             var result = new List<string>();
-            var exitCode = await doCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} -c \"{query};\"", password, (data) => result.Add(data), (msg) => logError(msg));
+            var exitCode = await DoCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} -c \"{query};\"", password, (data) => result.Add(data), LogError);
             return exitCode == 0 ? result : null;
         }
 
-        async public Task<int> doRestore(string host, string port, string user, string password, string db, string path)
+        public async Task<int> DoRestore(DatabaseParams prms)
         {
-            // can work with errors
-            await doCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} -c \"select pg_terminate_backend(pid) from pg_stat_activity where datname = '{db}';\"", password, null, (msg) => logError(msg));
+            return await DoDelete(prms) == 0 && await DoCreate(prms) == 0
+                && await DoCommand(@".\psql\pg_restore.exe", $"--no-owner -h {prms.Host} -p {prms.Port} -U {prms.User} -d {prms.Database} \"{prms.Path}\"", prms.Password, null, LogError) == 0 ? 0 : 1;
+        }
 
+        public async Task<int> DoDump(DatabaseParams prms)
+        {
+            return await DoCommand(@".\psql\pg_dump.exe", $"--no-owner --no-privileges -h {prms.Host} -p {prms.Port} {prms.Jobs} {prms.Compressoin} -O -U {prms.User} -f \"{prms.Path}\\{prms.DumpFileName}\" --blobs --format={prms.Format} {prms.Database}", prms.Password, null, LogError);
+        }
+
+        public async Task<int> DoTransfer(DatabaseParams prmsSrc, DatabaseParams prmsDest)
+        {
+            prmsSrc.Format = 'c';
+            prmsSrc.Path = Path.GetTempPath();
+            prmsDest.Database = prmsSrc.Database;
+            prmsDest.Format = prmsSrc.Format;
+            prmsDest.NameSufix = prmsSrc.NameSufix;
+            prmsDest.Path = prmsSrc.Path + prmsDest.DumpFileName;
+            return await DoDump(prmsSrc) == 0 && await DoRestore(prmsDest) == 0 ? 0 : 1;
+        }
+
+        public async Task<int> DoCreate(DatabaseParams prms)
+        {
+            return await DoCommand(@".\psql\psql.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -c \"create database {prms.Database} with encoding='UTF8' LC_CTYPE='en_US.UTF-8' LC_COLLATE='en_US.UTF-8' TEMPLATE=template0;\"", prms.Password, null, LogError);
+        }
+
+        public async Task<int> DoKillSession(DatabaseParams prms)
+        {
+            return await DoCommand(@".\psql\psql.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -c \"select pg_terminate_backend(pid) from pg_stat_activity where datname = '{prms.Database}';\"", prms.Password, null, LogError);
+        }
+
+        public async Task<int> DoDelete(DatabaseParams prms)
+        {
+            var code = await DoKillSession(prms);
             return
-                await doCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} -c \"drop database if exists {db};\"", password, null, (msg) => logError(msg)) == 0
-                && await doCommand(@".\psql\psql.exe", $"-h {host} -p {port} -U {user} -c \"create database {db};\"", password, null, (msg) => logError(msg)) == 0
-                && await doCommand(@".\psql\pg_restore.exe", $"-h {host} -p {port} -U {user} -d {db} \"{path}\"", password) == 0
+                code >= 0 &&
+                await DoCommand(@".\psql\psql.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -c \"drop database if exists {prms.Database};\"", prms.Password, null, LogError) == 0
                 ? 0 : 1;
-        }
-
-        async public Task<int> doRestore(DatabaseParams prms)
-        {
-            return await doRestore(prms.Host, prms.Port, prms.User, prms.Password, prms.Database, prms.Path);
-        }
-
-        async public Task<int> doDump(string host, string port, string user, string password, char format, string db, string path)
-        {
-            var fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            var jobs = GetJobsByFormat(format);
-            var compressoin = GetCompressoinByFormat(format);
-            var extension = GetextEnsionByFormat(format);
-            return await doCommand(@".\psql\pg_dump.exe", $"-h {host} -p {port} {jobs} {compressoin} -O -U {user} -f \"{path}\\{db}_{fileName}{extension}\" --blobs --format={format} {db}", password);
-        }
-
-        async public Task<int> doDump(DatabaseParams prms)
-        {
-            return await doDump(prms.Host, prms.Port, prms.User, prms.Password, prms.Format, prms.Database, prms.Path);
-        }
-
-        async public Task<int> doCreate(DatabaseParams prms)
-        {
-            return await doCommand(@".\psql\psql.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -c \"create database {prms.Database};\"", prms.Password, null, (msg) => logError(msg));
-        }
-
-        async public Task<int> doDelete(DatabaseParams prms)
-        {
-            return await doCommand(@".\psql\psql.exe", $"-h {prms.Host} -p {prms.Port} -U {prms.User} -c \"drop database if exists {prms.Database};\"", prms.Password, null, (msg) => logError(msg));
-        }
-
-        public void logError(string error)
-        {
-            File.AppendAllText("logs.log", DateTime.Now.ToString() + ": " + error + Environment.NewLine, Encoding.Default);
         }
 
         public List<string> GetStoredHosts()
@@ -108,15 +100,17 @@ namespace PostgreSQL_Restore_DB
 
         public List<DumpFormat> GetFormats()
         {
-            var items = new List<DumpFormat>();
-            items.Add(new DumpFormat('c', "Custom"));
-            items.Add(new DumpFormat('d', "Directory"));
-            items.Add(new DumpFormat('p', "Plain"));
-            items.Add(new DumpFormat('t', "Tar atchive"));
+            var items = new List<DumpFormat>
+            {
+                new DumpFormat('c', "Custom"),
+                new DumpFormat('d', "Directory"),
+                new DumpFormat('p', "Plain"),
+                new DumpFormat('t', "Tar atchive")
+            };
             return items;
         }
 
-        async private Task<int> doCommand(string execFile, string args, string pass, Action<string> onData = null, Action<string> onError = null)
+        private async Task<int> DoCommand(string execFile, string args, string pass, Action<string> onData = null, Action<string> onError = null)
         {
             int exitCode = -1;
             await Task.Run(() =>
@@ -142,34 +136,6 @@ namespace PostgreSQL_Restore_DB
             return exitCode;
         }
 
-        private string GetJobsByFormat(char format)
-        {
-            switch (format)
-            {
-                case 'd': return "--jobs=10";
-                default: return "";
-            }
-        }
 
-        private string GetCompressoinByFormat(char format)
-        {
-            switch (format)
-            {
-                case 'c':
-                case 'd': return "--compress=9";
-                default: return "";
-            }
-        }
-
-        private string GetextEnsionByFormat(char format)
-        {
-            switch (format)
-            {
-                case 'c': return ".dump";
-                case 'p': return ".sql";
-                case 't': return ".tar";
-                default: return "";
-            }
-        }
     }
 }

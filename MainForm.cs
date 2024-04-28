@@ -1,5 +1,4 @@
-﻿using EzSmb;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
     public partial class MainForm : Form
     {
@@ -90,20 +89,20 @@ namespace PostgreSQL_Restore_DB
 
         async private void button2_Click(object sender, EventArgs e)
         {
-            var folder = await Node.GetNode(@"192.168.0.5\public");
+            //var folder = await Node.GetNode(@"192.168.0.5\public");
             //var folder = await Node.GetNode(@"192.168.0.5\private", "zonex5", "123123Secret!");
 
             // List items
-            var nodes = await folder.GetList();
+            //var nodes = await folder.GetList();
             /*foreach (var node in nodes)
             {
                 Console.WriteLine($"Name: {node.Name}, Type: {node.Type}, LastAccessed: {node.LastAccessed:yyyy-MM-dd HH:mm:ss}");
             }*/
 
-            WebClient client = new WebClient();
-            client.DownloadFile(@"\\192.168.0.5\public\=Другое=\local.sql", @"d:\file.sql");
+            //WebClient client = new WebClient();
+            //client.DownloadFile(@"\\192.168.0.5\public\=Другое=\local.sql", @"d:\file.sql");
 
-            MessageBox.Show("ok");
+            //MessageBox.Show("ok");
         }
 
         private void button3_Click(object sender, EventArgs e)

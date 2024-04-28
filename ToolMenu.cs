@@ -1,30 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
-    internal class ToolMenu : ITool
+    public partial class ToolMenu : UserControl, ITool
     {
-        private ToolMenuUI menuUI;
-
         public IToolRuner ToolRuner { get; }
 
+        public UserControl MainContainer { get { return this; } }
+
         public string Caption => "PostgreSQL Tools";
-
-        public bool ButtonNextEnable { get => false; }
-
-        public UserControl MainContainer
-        {
-            get
-            {
-                if (menuUI == null) menuUI = new ToolMenuUI(this);
-                return menuUI;
-            }
-        }
 
         public DatabaseService DatabaseService { get; }
 
@@ -32,9 +24,33 @@ namespace PostgreSQL_Restore_DB
 
         public ToolMenu(IToolRuner toolRuner)
         {
+            InitializeComponent();
             ToolRuner = toolRuner;
         }
 
-        public void ButtonNextClick() { }
+        private void btMainDump_Click(object sender, EventArgs e)
+        {
+            ToolRuner.RunTool(new ToolDump(ToolRuner));
+        }
+
+        private void btRestore_Click(object sender, EventArgs e)
+        {
+            ToolRuner.RunTool(new ToolRestore(ToolRuner));
+        }
+
+        private void btUser_Click(object sender, EventArgs e)
+        {
+            ToolRuner.RunTool(new ToolUsers(ToolRuner));
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            ToolRuner.RunTool(new ToolDatabase(ToolRuner));
+        }
+
+        private void btTransfer_Click(object sender, EventArgs e)
+        {
+            ToolRuner.RunTool(new ToolTransfer(ToolRuner));
+        }
     }
 }

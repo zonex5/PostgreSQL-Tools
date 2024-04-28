@@ -10,14 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PostgreSQL_Restore_DB
+namespace PGTools
 {
-    public partial class MainForm2 : Form, IToolRuner
+    public partial class MainForm3 : Form, IToolRuner
     {
         private ITool previousTool = null;
         private ITool curentTool = null;
 
-        public MainForm2()
+        public MainForm3()
         {
             InitializeComponent();
 
@@ -35,14 +35,7 @@ namespace PostgreSQL_Restore_DB
             lbCaption.Text = tool.Caption;
             container.Controls.Clear();
             container.Controls.Add(tool.MainContainer);
-            btNext.Enabled = tool.ButtonNextEnable;
             btBack.Enabled = true;
-        }
-
-        private void btNext_Click(object sender, EventArgs e)
-        {
-            if (curentTool != null)
-                curentTool.ButtonNextClick();
         }
 
         private void btBack_Click(object sender, EventArgs e)
